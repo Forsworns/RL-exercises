@@ -8,13 +8,13 @@ flags = tf.app.flags
 # global configs
 flags.DEFINE_boolean('use_gpu', True, 'Whether to use gpu or not')
 flags.DEFINE_boolean('display', True, 'Whether to do display the env or not')
-flags.DEFINE_boolean('is_train', False, 'Whether to train or test')
+flags.DEFINE_boolean('is_train', True, 'Whether to train or test')
 flags.DEFINE_string('gpu_fraction', '1/1', 'idx / # of gpu fraction')
 
 # para configs
 flags.DEFINE_integer('tagt_q_step', 100, 'step interval to update target q')
-flags.DEFINE_float('epsilon', 0.01, 'probability to take random exploration')
-flags.DEFINE_integer('queue_size', 500, 'idx / # of gpu fraction')
+flags.DEFINE_float('epsilon', 1, 'probability to take random exploration')
+flags.DEFINE_integer('queue_size', 500, 'The memory size to implement experience replay')
 flags.DEFINE_integer('random_seed', 123, 'Value of random seed')
 
 # version configs
@@ -50,7 +50,6 @@ def main(_):
         if configs.env not in ENV_FC:
             raise ValueError("can't use environment except MountainCar-v0")
         env = Environment(configs)
-        
         agent = Agent(configs,env,sess)
         
         if configs.is_train:
