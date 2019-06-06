@@ -169,7 +169,6 @@ class Agent(object):
 				action = self.choose_action(state)
 				next_state, reward, done, _ = self.env.take_action(action)
 				position, _ = next_state
-				reward = abs(position-LOWEST)*REWARD_SCALE
 				if position >= GOAL:
 					reward += GOAL_REWARD
 				self.store_memory(state, action, reward, next_state, done)
