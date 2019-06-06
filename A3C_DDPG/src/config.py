@@ -7,7 +7,7 @@ class Config(object):
     multi_agent = 3
     ep_amount = 2000
     store_after_eps = 100
-    discount = 0.90
+    discount = 0.99
     actor_lr = 0.0001
     critic_lr = 0.001
     entropy = 0.01

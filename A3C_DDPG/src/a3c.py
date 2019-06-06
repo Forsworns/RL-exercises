@@ -243,7 +243,7 @@ def trainA3C(config, env, sess, recorded_args=['ep_amount', 'entropy']):
 		f.write(json.dumps(global_rewards))
 
 
-def testA3C(config, env, sess, recorded_args=['ep_amount', 'entropy']):
+def testA3C(config, env, sess, recorded_args=['algorithm','ep_amount', 'entropy']):
 	global_ac = A3CAgent(config, env, sess, GLOBAL_SCOPE, recorded_args)
-	agent = A3CAgent(config, env, sess, "test", globalNet=global_ac)
+	agent = A3CAgent(config, env, sess, "test", recorded_args, globalNet=global_ac)
 	agent.test()
